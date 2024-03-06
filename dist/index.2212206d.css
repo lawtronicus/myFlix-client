@@ -8,6 +8,11 @@ body {
   color: #000;
 }
 
+body {
+  justify-content: center;
+  display: flex;
+}
+
 .movie-view {
   color: #fff;
   background-color: #000;
@@ -18,11 +23,10 @@ body {
   align-items: center;
   gap: 12px;
   width: 700px;
-  margin-left: auto;
-  margin-right: auto;
   padding-top: 48px;
   padding-bottom: 48px;
   display: flex;
+  position: relative;
   box-shadow: 8px 8px 8px #00000080;
 }
 
@@ -57,7 +61,7 @@ button {
   border: none;
   font-size: 40px;
   position: absolute;
-  top: 20px;
-  right: 280px;
+  top: 10px;
+  right: 40px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

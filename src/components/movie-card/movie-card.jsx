@@ -1,9 +1,10 @@
-import MovieCardContainer from "../styled-components/movie-container/movie-container"; // Make sure this path matches the location of your styled component
+import MovieCardContainer from "../styled-components/movie-container/movie-container";
+import StyledImage from "../styled-components/movie-image/styled-image";
 
 export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
     <MovieCardContainer onClick={() => onMovieClick(movieData)}>
-      <img
+      <StyledImage
         src={movieData.imageUrl}
         alt={`Cover of ${movieData.title}`}
         style={{ width: "200px", height: "auto", borderRadius: "4px" }}

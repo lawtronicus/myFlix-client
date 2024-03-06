@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const StyledImage = styled.img`
-  width: 100%;
-  max-width: 200px;
+  width: 250px;
   height: auto;
 `;
 
