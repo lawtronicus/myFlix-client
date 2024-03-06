@@ -2954,31 +2954,27 @@ try {
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
 var _mainView = require("./components/main-view/main-view");
-// Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
-// Main component (will eventually use all the others)
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "my-flix",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
             fileName: "src/index.jsx",
-            lineNumber: 11,
+            lineNumber: 10,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.jsx",
-        lineNumber: 10,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
 _c = MyFlixApplication;
-// Finds the root of your app
 const container = document.querySelector("#root");
 const root = (0, _client.createRoot)(container);
-// Tells React to render your app in the root DOM element
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 21,
+    lineNumber: 18,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -27486,12 +27482,7 @@ const MovieCard = ({ movieData, onMovieClick })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _styledImageDefault.default), {
                 src: movieData.imageUrl,
-                alt: `Cover of ${movieData.title}`,
-                style: {
-                    width: "200px",
-                    height: "auto",
-                    borderRadius: "4px"
-                }
+                alt: `Cover of ${movieData.title}`
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 7,
@@ -27501,14 +27492,14 @@ const MovieCard = ({ movieData, onMovieClick })=>{
                 children: movieData.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 12,
+                lineNumber: 11,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: movieData.description
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 13,
+                lineNumber: 12,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27538,15 +27529,16 @@ const MovieCardContainer = (0, _styledComponentsDefault.default).div`
   justify-content: center;
   align-items: center;
   width: 200px;
-  cursor: pointer; /* Makes it clear the card is clickable */
-  margin: 10px; /* Adjust based on your design */
-  padding: 20px; /* Adjust based on your design */
-  border: 2px solid black; /* Sample styling, adjust as needed */
-  border-radius: 8px; /* Sample styling, adjust as needed */
-  background-color: white; /* Sample styling, adjust as needed */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sample styling, adjust as needed */
+  cursor: pointer;
+  margin: 10px;
+  padding: 20px;
+  padding-top: 0px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   &:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sample styling, adjust as needed */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
 `;
 exports.default = MovieCardContainer;
@@ -29737,8 +29729,10 @@ parcelHelpers.defineInteropFlag(exports);
 var _styledComponents = require("styled-components");
 var _styledComponentsDefault = parcelHelpers.interopDefault(_styledComponents);
 const StyledImage = (0, _styledComponentsDefault.default).img`
-  width: 250px;
+  width: 240px;
   height: auto;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `;
 exports.default = StyledImage;
 
@@ -29915,8 +29909,8 @@ const GridContainer = (0, _styledComponentsDefault.default).div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
   justify-content: center;
-  gap: 10px; // Adjust spacing between grid items as needed
-  padding: 20px; // Add padding around the entire grid container
+  gap: 10px;
+  padding: 20px;
   max-width: 1000px;
 `;
 exports.default = GridContainer;

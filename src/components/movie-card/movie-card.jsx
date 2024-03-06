@@ -7,7 +7,6 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
       <StyledImage
         src={movieData.imageUrl}
         alt={`Cover of ${movieData.title}`}
-        style={{ width: "200px", height: "auto", borderRadius: "4px" }}
       />
       <h3>{movieData.title}</h3>
       <p>{movieData.description}</p>

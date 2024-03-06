@@ -3,10 +3,10 @@ $color: black;
 
 body {
   background: linear-gradient(to right, #eeb0ff, #a0eeff);
-  min-height: 100vh; // Make sure the gradient covers the whole page
-  background-attachment: fixed; // Optional: Makes the background fixed during scroll
-  background-repeat: no-repeat; // Prevents the background from repeating
-  background-size: cover; // Ensures the background covers the entire viewport
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .my-flix {
