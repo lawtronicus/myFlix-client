@@ -1,4 +1,13 @@
-$color: steelblue;
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Rethink+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
+$color: black;
+
+body {
+  background: linear-gradient(to right, #eeb0ff, #a0eeff);
+  min-height: 100vh; // Make sure the gradient covers the whole page
+  background-attachment: fixed; // Optional: Makes the background fixed during scroll
+  background-repeat: no-repeat; // Prevents the background from repeating
+  background-size: cover; // Ensures the background covers the entire viewport
+}
 
 .my-flix {
   color: $color;
