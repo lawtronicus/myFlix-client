@@ -3,7 +3,6 @@ import styled from "styled-components";
 const MovieCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 200px;
   cursor: pointer;

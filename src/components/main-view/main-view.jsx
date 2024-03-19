@@ -1,10 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import StyledTitle from "../styled-components/styled-title/styled-title";
 import GridContainer from "../styled-components/movie-grid-container/movie-grid-container";
 
 export const MainView = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((doc) => {
+          console.log(doc);
+          return {
+            key: doc._id,
+            title: doc.title,
+            description: doc.description,
+            imageUrl: doc.imageurl,
+            directors: doc.directors,
+            writers: doc.writers,
+            mainActor: doc.main_actor,
+            genres: doc.genres,
+          };
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
+
+  /*export const MainView = () => {
   const [movies, setMovies] = useState([
     {
       id: 1,
@@ -47,7 +70,7 @@ export const MainView = () => {
       mainActor: "Kim Novak",
     },
   ]);
-
+*/
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {

@@ -27331,62 +27331,82 @@ var _movieGridContainerDefault = parcelHelpers.interopDefault(_movieGridContaine
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Vertigo",
-            imageUrl: "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-            directors: [
-                "Alfred Hitchcock"
-            ],
-            description: "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-            mainActor: "Kim Novak"
-        },
-        {
-            id: 1,
-            title: "Vertigo",
-            imageUrl: "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-            directors: [
-                "Alfred Hitchcock"
-            ],
-            description: "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-            mainActor: "Kim Novak"
-        },
-        {
-            id: 1,
-            title: "Vertigo",
-            imageUrl: "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-            directors: [
-                "Alfred Hitchcock"
-            ],
-            description: "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-            mainActor: "Kim Novak"
-        },
-        {
-            id: 1,
-            title: "Vertigo",
-            imageUrl: "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-            directors: [
-                "Alfred Hitchcock"
-            ],
-            description: "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-            mainActor: "Kim Novak"
-        }
-    ]);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.map((doc)=>{
+                console.log(doc);
+                return {
+                    key: doc._id,
+                    title: doc.title,
+                    description: doc.description,
+                    imageUrl: doc.imageurl,
+                    directors: doc.directors,
+                    writers: doc.writers,
+                    mainActor: doc.main_actor,
+                    genres: doc.genres
+                };
+            });
+            setMovies(moviesFromApi);
+        });
+    }, []);
+    /*export const MainView = () => {
+  const [movies, setMovies] = useState([
+    {
+      id: 1,
+      title: "Vertigo",
+      imageUrl:
+        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
+      directors: ["Alfred Hitchcock"],
+      description:
+        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+      mainActor: "Kim Novak",
+    },
+    {
+      id: 1,
+      title: "Vertigo",
+      imageUrl:
+        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
+      directors: ["Alfred Hitchcock"],
+      description:
+        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+      mainActor: "Kim Novak",
+    },
+    {
+      id: 1,
+      title: "Vertigo",
+      imageUrl:
+        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
+      directors: ["Alfred Hitchcock"],
+      description:
+        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+      mainActor: "Kim Novak",
+    },
+    {
+      id: 1,
+      title: "Vertigo",
+      imageUrl:
+        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
+      directors: ["Alfred Hitchcock"],
+      description:
+        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+      mainActor: "Kim Novak",
+    },
+  ]);
+*/ const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 55,
+        lineNumber: 78,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 86,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27395,7 +27415,7 @@ const MainView = ()=>{
                 children: "Currently Featured Movies"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 68,
+                lineNumber: 91,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieGridContainerDefault.default), {
@@ -27406,22 +27426,22 @@ const MainView = ()=>{
                         }
                     }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 71,
+                        lineNumber: 94,
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 69,
+                lineNumber: 92,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 67,
+        lineNumber: 90,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "hJHAQf6ZTO8pEJMFDmWwi64Zow0=");
+_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27526,7 +27546,6 @@ var _styledComponentsDefault = parcelHelpers.interopDefault(_styledComponents);
 const MovieCardContainer = (0, _styledComponentsDefault.default).div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 200px;
   cursor: pointer;
@@ -29907,7 +29926,7 @@ const GridContainer = (0, _styledComponentsDefault.default).div`
   margin-right: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  align-items: center;
+  align-items: top;
   justify-content: center;
   gap: 10px;
   padding: 20px;
