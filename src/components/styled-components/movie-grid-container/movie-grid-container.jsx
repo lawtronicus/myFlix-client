@@ -4,7 +4,7 @@ const GridContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   align-items: top;
   justify-content: center;
   gap: 10px;

@@ -17,9 +17,9 @@ export const MainView = () => {
             title: doc.title,
             description: doc.description,
             imageUrl: doc.imageurl,
-            directors: doc.directors,
+            directors: doc.directors[0].name,
             writers: doc.writers,
-            mainActor: doc.main_actor,
+            mainActor: doc.main_actor.name,
             genres: doc.genres,
           };
         });

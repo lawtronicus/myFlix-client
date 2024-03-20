@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 const MovieCardContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 200px;
+  width: 800px;
   cursor: pointer;
   margin: 10px;
-  padding: 20px;
   padding-top: 0px;
   border: 2px solid black;
   border-radius: 8px;
