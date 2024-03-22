@@ -2,12 +2,20 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { PosterView } from "../poster-view/poster-view";
+import { LoginView } from "../login-view/login-view";
 import StyledTitle from "../styled-components/styled-title/styled-title";
 import GridContainer from "../styled-components/movie-grid-container/movie-grid-container";
 import "./main-view.scss";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+  const [user, setUser] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  if (!user) {
+    return <LoginView />;
+  }
+
   useEffect(() => {
     fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies")
       .then((response) => response.json())
@@ -28,8 +36,6 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, []);
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {
     let similarMovies = movies.filter((movie) => {
