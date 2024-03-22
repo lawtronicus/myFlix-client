@@ -1,0 +1,10 @@
+.movieText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.movieText > p {
+  width: 75%;
+}

@@ -1,61 +1,67 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { PosterView } from "../poster-view/poster-view";
 import StyledTitle from "../styled-components/styled-title/styled-title";
 import GridContainer from "../styled-components/movie-grid-container/movie-grid-container";
+import "./main-view.scss";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "Vertigo",
-      imageUrl:
-        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-      directors: ["Alfred Hitchcock"],
-      description:
-        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-      mainActor: "Kim Novak",
-    },
-    {
-      id: 1,
-      title: "Vertigo",
-      imageUrl:
-        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-      directors: ["Alfred Hitchcock"],
-      description:
-        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-      mainActor: "Kim Novak",
-    },
-    {
-      id: 1,
-      title: "Vertigo",
-      imageUrl:
-        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-      directors: ["Alfred Hitchcock"],
-      description:
-        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-      mainActor: "Kim Novak",
-    },
-    {
-      id: 1,
-      title: "Vertigo",
-      imageUrl:
-        "https://cdn.vox-cdn.com/thumbor/yjAPqloAa_0VRCmh7IdOvb9w3UM=/0x0:3419x4883/1820x1213/filters:focal(1902x1980:2448x2526):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72109850/74391607.0.jpg",
-      directors: ["Alfred Hitchcock"],
-      description:
-        "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
-      mainActor: "Kim Novak",
-    },
-  ]);
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((doc) => {
+          console.log(doc);
+          return {
+            key: doc._id,
+            title: doc.title,
+            description: doc.description,
+            imageUrl: doc.imageurl,
+            directors: doc.directors[0].name,
+            writers: doc.writers,
+            mainActor: doc.main_actor.name,
+            genres: doc.genres[0].name,
+          };
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {
+    let similarMovies = movies.filter((movie) => {
+      console.log("current movie: ", selectedMovie.title);
+      console.log("current movie genre: ", selectedMovie.genres);
+      console.log("checking movie: ", movie.title);
+      console.log("checking movie genre: ", movie.genres);
+      return (
+        movie.key !== selectedMovie.key && movie.genres === selectedMovie.genres
+      );
+    });
+    console.log("similar movies:", similarMovies);
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        <hr />
+        <StyledTitle>Similar Movies</StyledTitle>
+        <div className="similar-movie-list">
+          {similarMovies.map((movie) => (
+            <PosterView
+              key={movie.id}
+              movieData={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 
