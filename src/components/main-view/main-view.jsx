@@ -3,25 +3,38 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { PosterView } from "../poster-view/poster-view";
 import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../SignupView/signup-view";
 import StyledTitle from "../styled-components/styled-title/styled-title";
 import GridContainer from "../styled-components/movie-grid-container/movie-grid-container";
+import NavBar from "../NavBar/navbar";
 import "./main-view.scss";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  if (!user) {
-    return <LoginView />;
-  }
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    setToken(null);
+    setSelectedMovie(null); // Clear selected movie upon logout
+    setMovies([]); // Optionally clear movies list or any other related state
+    // any additional state resets needed on logout
+  };
 
   useEffect(() => {
-    fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies")
+    if (!token) return;
+    fetch("https://my-flix-application-66e35a87937e.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((doc) => {
-          console.log(doc);
           return {
             key: doc._id,
             title: doc.title,
@@ -31,30 +44,40 @@ export const MainView = () => {
             writers: doc.writers,
             mainActor: doc.main_actor.name,
             genres: doc.genres[0].name,
+            token: token,
           };
         });
         setMovies(moviesFromApi);
       });
-  }, []);
+  }, [token]);
+
+  if (!user) {
+    return (
+      <>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+      </>
+    );
+  }
 
   if (selectedMovie) {
-    let similarMovies = movies.filter((movie) => {
-      console.log("current movie: ", selectedMovie.title);
-      console.log("current movie genre: ", selectedMovie.genres);
-      console.log("checking movie: ", movie.title);
-      console.log("checking movie genre: ", movie.genres);
+    const similarMovies = movies.filter((movie) => {
       return (
         movie.key !== selectedMovie.key && movie.genres === selectedMovie.genres
       );
     });
-    console.log("similar movies:", similarMovies);
+
     return (
       <>
+        <NavBar user={user} setUser={setUser} onLogout={logout} />
         <MovieView
           movie={selectedMovie}
           onBackClick={() => setSelectedMovie(null)}
         />
-        <hr />
         <StyledTitle>Similar Movies</StyledTitle>
         <div className="similar-movie-list">
           {similarMovies.map((movie) => (
@@ -76,7 +99,8 @@ export const MainView = () => {
   }
 
   return (
-    <div>
+    <>
+      <NavBar setUser={setUser} />
       <StyledTitle>Currently Featured Movies</StyledTitle>
       <GridContainer>
         {movies.map((movie) => (
@@ -89,6 +113,6 @@ export const MainView = () => {
           />
         ))}
       </GridContainer>
-    </div>
+    </>
   );
 };
