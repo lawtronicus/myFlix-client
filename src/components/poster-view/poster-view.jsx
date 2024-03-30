@@ -1,5 +1,4 @@
 import StyledImage from "../styled-components/movie-image/styled-image";
-import "./poster-view.scss";
 import PropTypes from "prop-types";
 
 export const PosterView = ({ movieData, onMovieClick }) => {
