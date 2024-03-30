@@ -1,0 +1,14 @@
+.movieText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.movieText h2 {
+  text-align: center;
+}
+
+.movieText > p {
+  width: 75%;
+}

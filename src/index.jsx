@@ -5,11 +5,7 @@ import { MainView } from "./components/main-view/main-view";
 import "./index.scss";
 
 const MyFlixApplication = () => {
-  return (
-    <div className="my-flix">
-      <MainView />
-    </div>
-  );
+  return <MainView />;
 };
 
 const container = document.querySelector("#root");

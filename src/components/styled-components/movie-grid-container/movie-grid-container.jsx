@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const GridContainer = styled.div`
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;

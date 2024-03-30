@@ -4,35 +4,29 @@ body {
 }
 
 .movie-view {
-  position: relative;
-  padding-top: 48px;
-  padding-bottom: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  border: 4px solid black;
-  width: 700px;
-  border-radius: 24px;
   background-color: black;
+  margin-top: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  max-width: 75%;
+  align-items: center;
+  gap: 48px;
   color: white;
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
 }
 
-.movie-view-image {
-  border: 4px solid black;
-  border-left: 88px solid white;
-  border-right: 88px solid white;
-  width: 75%;
-  background-color: black;
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .title {
   font-size: 48px;
   font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 0px black;
 }
 
 .description {
@@ -43,12 +37,12 @@ body {
   font-weight: bold;
 }
 
-button {
+.back-button {
   color: white;
   font-size: 40px;
   position: absolute;
-  top: 10px;
-  right: 40px;
+  top: 12px;
+  right: 12px;
   background: none;
   border: none;
   cursor: pointer;
