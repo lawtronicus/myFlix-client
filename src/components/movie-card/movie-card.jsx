@@ -1,20 +1,29 @@
-import MovieCardContainer from "../styled-components/movie-container/movie-container";
-import StyledImage from "../styled-components/movie-image/styled-image";
 import PropTypes from "prop-types";
+import { Card } from "react-bootstrap";
 import "./movie-card.scss";
 
 export const MovieCard = ({ movieData, onMovieClick }) => {
   return (
-    <MovieCardContainer onClick={() => onMovieClick(movieData)}>
-      <StyledImage
-        src={movieData.imageUrl}
-        alt={`Cover of ${movieData.title}`}
-      />
-      <div className="movieText">
-        <h2>{movieData.title}</h2>
-        <p>{movieData.description}</p>
+    <Card
+      className="custom-card"
+      onClick={() => onMovieClick(movieData)}
+      style={{ margin: "2rem 0px" }}
+    >
+      <div className="d-flex">
+        <Card.Img
+          variant="left"
+          src={movieData.imageUrl}
+          alt={`Cover of ${movieData.title}`}
+          style={{ width: "220px", margin: "1rem" }}
+        />
+        <Card.Body className="movie-text">
+          <Card.Title>{movieData.title}</Card.Title>
+          <Card.Text className="card-description">
+            {movieData.description}
+          </Card.Text>
+        </Card.Body>
       </div>
-    </MovieCardContainer>
+    </Card>
   );
 };
 

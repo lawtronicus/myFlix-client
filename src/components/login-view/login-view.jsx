@@ -1,7 +1,10 @@
+import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import "./login-view.scss";
-import ModalContainer from "../styled-components/modal-container/modal-container";
 import { SignupView } from "../SignupView/signup-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Container } from "react-bootstrap";
+import "./login-view.scss";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -45,19 +48,23 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <>
+    <Row className="justify-content-md-center">
       {isSigningUp ? (
-        <SignupView
-          onSignUp={onLoggedIn}
-          onCancelSignup={() => setIsSigningUp(false)}
-        />
+        <Container className="d-flex justify-content-center">
+          <Col md={6}>
+            <SignupView
+              onSignUp={onLoggedIn}
+              onCancelSignup={() => setIsSigningUp(false)}
+            />
+          </Col>
+        </Container>
       ) : (
-        <ModalContainer className="login-container">
-          <h1>Login</h1>
-          <form className="login-form" onSubmit={handleSubmit}>
-            <label className="email-label" htmlFor="email">
-              Email:
-              <input
+        <Col md={6}>
+          <Form className="login-form" onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <Form.Group>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
                 id="email"
                 type="text"
                 value={email}
@@ -65,10 +72,10 @@ export const LoginView = ({ onLoggedIn }) => {
                 placeholder="Type your email"
                 required
               />
-            </label>
-            <label className="password-label" htmlFor="password">
-              Password:
-              <input
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
                 id="password"
                 type="password"
                 value={password}
@@ -76,13 +83,24 @@ export const LoginView = ({ onLoggedIn }) => {
                 placeholder="Type your password"
                 required
               />
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-          <p>or</p>
-          <button onClick={toggleSignUp}>Sign up!</button>
-        </ModalContainer>
+            </Form.Group>
+            <Button variant="primary" type="submit" style={{ width: "84px" }}>
+              Submit
+            </Button>
+          </Form>
+          <div className="sign-up-redirect">
+            <p>or</p>
+            <Button
+              className="sign-up-button"
+              variant="secondary"
+              onClick={toggleSignUp}
+              style={{ color: "white" }}
+            >
+              Sign up!
+            </Button>
+          </div>
+        </Col>
       )}
-    </>
+    </Row>
   );
 };

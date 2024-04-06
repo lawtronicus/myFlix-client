@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { PosterView } from "../poster-view/poster-view";
 import { LoginView } from "../login-view/login-view";
-import { SignupView } from "../SignupView/signup-view";
-import StyledTitle from "../styled-components/styled-title/styled-title";
-import GridContainer from "../styled-components/movie-grid-container/movie-grid-container";
-import NavBar from "../NavBar/navbar";
+import { NavBar } from "../NavBar/navbar";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Container } from "react-bootstrap";
 import "./main-view.scss";
 
 export const MainView = () => {
@@ -18,13 +17,13 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const logout = () => {
+    console.log("logout clicked");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
     setToken(null);
-    setSelectedMovie(null); // Clear selected movie upon logout
-    setMovies([]); // Optionally clear movies list or any other related state
-    // any additional state resets needed on logout
+    setSelectedMovie(null);
+    setMovies([]);
   };
 
   useEffect(() => {
@@ -53,14 +52,12 @@ export const MainView = () => {
 
   if (!user) {
     return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-      </>
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
     );
   }
 
@@ -72,25 +69,29 @@ export const MainView = () => {
     });
 
     return (
-      <>
-        <NavBar user={user} setUser={setUser} onLogout={logout} />
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <StyledTitle>Similar Movies</StyledTitle>
-        <div className="similar-movie-list">
-          {similarMovies.map((movie) => (
-            <PosterView
-              key={movie.id}
-              movieData={movie}
-              onMovieClick={(newSelectedMovie) => {
-                setSelectedMovie(newSelectedMovie);
-              }}
+      <Container fluid>
+        <Row>
+          <NavBar onLogout={logout} />
+          <Col md={8} className="mx-auto">
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
             />
-          ))}
-        </div>
-      </>
+          </Col>
+          <h1 className="display-4 similar-movies-title">Similar Movies</h1>
+          <Col sm={10} md={7} className="mx-auto">
+            {similarMovies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                movieData={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            ))}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
@@ -99,20 +100,24 @@ export const MainView = () => {
   }
 
   return (
-    <>
-      <NavBar setUser={setUser} />
-      <StyledTitle>Currently Featured Movies</StyledTitle>
-      <GridContainer>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movieData={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
-        ))}
-      </GridContainer>
-    </>
+    <Container className="main-view-container" fluid>
+      <Row className="p-0">
+        <NavBar onLogout={logout} />
+        <h1 className="display-2 main-heading mt-2">
+          Currently Featured Movies
+        </h1>
+        <Col sm={10} md={7} className="mx-auto">
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movieData={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))}
+        </Col>
+      </Row>
+    </Container>
   );
 };

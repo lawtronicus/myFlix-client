@@ -1,50 +1,40 @@
-body {
-  display: flex;
-  justify-content: center;
-}
-
-.movie-view {
-  background-color: black;
-  margin-top: 8rem;
-  margin-left: auto;
-  margin-right: auto;
+.movie-view-card {
+  margin: 2rem 0;
+  padding-bottom: 2rem;
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  max-width: 75%;
   align-items: center;
-  gap: 48px;
-  color: white;
+  box-shadow: 4px 4px 4px rgba(0 0 0 / 50%);
 }
 
-.movie-info {
+.movie-poster-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+.card-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
 }
 
-.title {
-  font-size: 48px;
-  font-weight: bold;
+.card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
 }
 
-.description {
-  width: 500px;
-}
-
-.label {
-  font-weight: bold;
+.synopsis {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .back-button {
-  color: white;
-  font-size: 40px;
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-shadow: 2px 2px 2px black;
+  right: 1rem;
+  top: 1rem;
 }

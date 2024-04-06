@@ -1,14 +1,30 @@
-.movieText {
+.custom-card {
+  cursor: pointer;
+  box-shadow: 4px 4px 4px rgba(0 0 0 / 50%);
+}
+
+@media (max-width: 768px) {
+  .custom-card .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-text {
+    align-items: center;
+  }
+}
+
+.movie-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.movieText h2 {
-  text-align: center;
-}
-
-.movieText > p {
-  width: 75%;
+.card-description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
