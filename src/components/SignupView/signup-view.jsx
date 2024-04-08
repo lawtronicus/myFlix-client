@@ -1,6 +1,6 @@
+import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import "./signup-view.scss";
-import ModalContainer from "../styled-components/modal-container/modal-container";
 
 export const SignupView = ({ onSignUp, onCancelSignup }) => {
   const [email, setEmail] = useState("");
@@ -77,51 +77,61 @@ export const SignupView = ({ onSignUp, onCancelSignup }) => {
   };
 
   return (
-    <ModalContainer className="signup-container">
+    <Form className="signup-form" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
-      <button className="back-to-login" onClick={onCancelSignup}>
-        X
-      </button>
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            minLength="3"
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Birthday:
-          <input
-            type="date"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </ModalContainer>
+      <Button
+        variant="warning"
+        className="back-to-login"
+        onClick={onCancelSignup}
+      >
+        Back
+      </Button>
+      <Form.Group>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          id="email"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Type your email"
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Type your password"
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          id="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Type your Username"
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          id="dob"
+          type="date"
+          value={dob}
+          onChange={(e) => setDob(e.target.value)}
+          required
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit" style={{ width: "84px" }}>
+        Submit
+      </Button>
+    </Form>
   );
 };
