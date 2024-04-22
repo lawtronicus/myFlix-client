@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import { MovieCard } from "../movie-card/movie-card";
 import { FavoriteButton } from "../favorite-button/favorite-button";
+import { useScrollToTop } from "../../hooks/scroll-to-top.js";
 
 export const MovieView = ({
   movies,
@@ -14,10 +15,11 @@ export const MovieView = ({
   handleFavoriteToggle,
   userFavoriteMovies,
 }) => {
-  const { movieId } = useParams();
-  const movie = movies.find((m) => m.key === movieId);
+  const params = useParams();
+  const title = params.title;
+  const movie = movies.find((m) => m.title === title);
   const similarMovies = movies.filter((m) => {
-    return m.key !== movie.key && m.genres === movie.genres;
+    return m.title !== movie.title && m.genres === movie.genres;
   });
 
   const isFavorite = userFavoriteMovies.includes(movie.title);
@@ -26,6 +28,7 @@ export const MovieView = ({
     handleFavoriteToggle(user._id, movie.title, isFavorite);
   };
 
+  useScrollToTop();
   return (
     <>
       <Card className="movie-view-card">

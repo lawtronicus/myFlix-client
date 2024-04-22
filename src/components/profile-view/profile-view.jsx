@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import "./profile-view.scss";
@@ -58,7 +56,7 @@ export const ProfileView = ({ user, token, movies, onLogout }) => {
       ...formData,
       dob: dobISO,
     };
-    console.log(updatedFormData);
+
     fetch(
       `https://my-flix-application-66e35a87937e.herokuapp.com/users/${userId}/`,
       {
@@ -81,7 +79,6 @@ export const ProfileView = ({ user, token, movies, onLogout }) => {
         }
       })
       .then((data) => {
-        console.log("Success", data);
         alert("Profile updated successfully!");
       })
       .catch((error) => {

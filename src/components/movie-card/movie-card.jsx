@@ -21,7 +21,7 @@ export const MovieCard = ({
     <Card className="custom-card" style={{ margin: "2rem 0px" }}>
       <FavoriteButton isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
       <Link
-        to={`/movies/${encodeURIComponent(movieData.key)}`}
+        to={`/movies/${encodeURIComponent(movieData.title)}`}
         className="movie-card-link"
       >
         <div className="d-flex">

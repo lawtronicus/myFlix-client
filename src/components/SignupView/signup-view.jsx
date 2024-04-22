@@ -55,7 +55,6 @@ export const SignupView = ({ onLoggedIn }) => {
           )
             .then((response) => response.json())
             .then((data) => {
-              console.log(data);
               if (data.user && data.token) {
                 onLoggedIn(data.user, data.token);
               } else {

@@ -40,7 +40,6 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(updatedUser)); // Update localStorage
 
     const method = isFavorite ? "DELETE" : "PUT";
-    console.log("method: ", method);
     const url = `https://my-flix-application-66e35a87937e.herokuapp.com/users/${userid}/${movieTitle}`;
     const options = {
       method: method,
@@ -52,9 +51,6 @@ export const MainView = () => {
 
     fetch(url, options)
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Favorite status updated:", data);
-      })
       .catch((error) => {
         console.error("Error updating favorite status:", error);
       });
@@ -145,7 +141,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies/:movieId"
+            path="/movies/:title"
             element={
               <>
                 {!user ? (
