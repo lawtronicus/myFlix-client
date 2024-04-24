@@ -190,11 +190,12 @@ export const ProfileView = ({ user, token, userFavoriteMovies, onLogout }) => {
         <h3 className="fav-heading">Your Favorite Movies</h3>
         <div className="favorite-movies">
           {userFavoriteMovies.map((movie) => {
+            console.log(movie);
             return (
               <Link to={`/movies/${movie.title}`}>
                 <img
                   className="movie-poster"
-                  src={movie.imageUrl}
+                  src={movie.imageurl}
                   alt="movie poster"
                 />
               </Link>
