@@ -22,10 +22,12 @@ export const MovieView = ({
     return m.title !== movie.title && m.genres === movie.genres;
   });
 
-  const isFavorite = userFavoriteMovies.includes(movie.title);
+  const isFavorite = userFavoriteMovies.some(
+    (favoriteMovie) => favoriteMovie.title === movie.title
+  );
 
   const toggleFavorite = () => {
-    handleFavoriteToggle(user._id, movie.title, isFavorite);
+    handleFavoriteToggle(user._id, movie, isFavorite);
   };
 
   useScrollToTop();
@@ -67,7 +69,7 @@ export const MovieView = ({
         </Card.Body>
         <Link to="/">
           <Button className="back-button" variant="warning">
-            BACK
+            Movies
           </Button>
         </Link>
       </Card>

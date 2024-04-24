@@ -25,22 +25,27 @@ export const MainView = () => {
     if (user) {
       setUserFavoriteMovies(user.favorite_movies || []);
     }
-  }, [user]); // Dependency on 'user' ensures this runs when 'user' changes
+  }, [user]);
 
-  const handleFavoriteToggle = (userid, movieTitle, isFavorite) => {
-    const isCurrentlyFavorite = userFavoriteMovies.includes(movieTitle);
+  const handleFavoriteToggle = (userid, movie, isFavorite) => {
+    const isCurrentlyFavorite = userFavoriteMovies.some((favMovie) => {
+      return favMovie.key === movie.key;
+    });
+    console.log("movie: ", movie);
+    console.log("isCurrentlyFavorite: ", isCurrentlyFavorite);
+
     const updatedFavorites = isCurrentlyFavorite
-      ? userFavoriteMovies.filter((id) => id !== movieTitle) // Remove movie from favorites
-      : [...userFavoriteMovies, movieTitle];
+      ? userFavoriteMovies.filter((favMovie) => favMovie.key !== movie.key)
+      : [...userFavoriteMovies, movie];
 
     setUserFavoriteMovies(updatedFavorites);
 
     const updatedUser = { ...user, favorite_movies: updatedFavorites };
-    setUser(updatedUser); // Assuming setUser updates the user state
-    localStorage.setItem("user", JSON.stringify(updatedUser)); // Update localStorage
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
 
     const method = isFavorite ? "DELETE" : "PUT";
-    const url = `https://my-flix-application-66e35a87937e.herokuapp.com/users/${userid}/${movieTitle}`;
+    const url = `https://my-flix-application-66e35a87937e.herokuapp.com/users/${userid}/${movie.title}`;
     const options = {
       method: method,
       headers: {
@@ -134,7 +139,7 @@ export const MainView = () => {
                 <ProfileView
                   user={user}
                   token={token}
-                  movies={movies}
+                  userFavoriteMovies={userFavoriteMovies}
                   onLogout={logout}
                 />
               </>

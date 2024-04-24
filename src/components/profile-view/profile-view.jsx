@@ -6,8 +6,9 @@ import { Container } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import "./profile-view.scss";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, token, movies, onLogout }) => {
+export const ProfileView = ({ user, token, userFavoriteMovies, onLogout }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: user.email,
@@ -15,6 +16,18 @@ export const ProfileView = ({ user, token, movies, onLogout }) => {
     username: user.username,
     dob: user.dob.split("T")[0],
   });
+  /*
+  const movieTitleAndImage = userFavoriteMovies.map((favoriteMovie) => {
+    console.log(favoriteMovie);
+    const movie = movies.find((movie) => movie.title === favoriteMovie);
+    console.log(movie);
+    if (movie) {
+      return { title: favoriteMovie, imageUrl: movie.imageUrl };
+    } else {
+      return null;
+    }
+  });
+  */
 
   const [show, setShow] = useState(false);
 
@@ -88,7 +101,7 @@ export const ProfileView = ({ user, token, movies, onLogout }) => {
   };
 
   return (
-    <Container>
+    <Container className="profile-page">
       <Row className="justify-content-md-center" id="profile-container">
         <Col id="greeting" md={12} lg={6} className="p-4">
           <div className="circle">
@@ -173,6 +186,22 @@ export const ProfileView = ({ user, token, movies, onLogout }) => {
           </Modal.Footer>
         </Modal>
       </Row>
+      <div className="userFavs">
+        <h3 className="fav-heading">Your Favorite Movies</h3>
+        <div className="favorite-movies">
+          {userFavoriteMovies.map((movie) => {
+            return (
+              <Link to={`/movies/${movie.title}`}>
+                <img
+                  className="movie-poster"
+                  src={movie.imageUrl}
+                  alt="movie poster"
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </Container>
   );
 };

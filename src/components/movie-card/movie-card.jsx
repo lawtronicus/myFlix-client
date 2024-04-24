@@ -11,10 +11,12 @@ export const MovieCard = ({
   handleFavoriteToggle,
   userFavoriteMovies,
 }) => {
-  const isFavorite = userFavoriteMovies.includes(movieData.title);
+  const isFavorite = userFavoriteMovies.some(
+    (movie) => movie.title === movieData.title
+  );
 
   const toggleFavorite = () => {
-    handleFavoriteToggle(userId, movieData.title, isFavorite);
+    handleFavoriteToggle(userId, movieData, isFavorite);
   };
 
   return (

@@ -1,9 +1,13 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+}
+
 #profile-container {
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 2rem;
-  box-shadow: 4px 4px 4px rgba(0 0 0 / 50%);
 
   background: linear-gradient(to bottom right, #ffcb52, #ff3c00);
   background-repeat: no-repeat;
@@ -45,4 +49,44 @@
 .profile-input:focus {
   border: 2px solid rgb(255, 38, 0) !important;
   box-shadow: 0 0 0 0.25rem rgba(255, 55, 0, 0.5) !important;
+}
+
+.userFavs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.favorite-movies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+.movie-poster {
+  width: 12rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  transition: transform 0.25s ease-in-out;
+}
+
+.movie-poster:hover {
+  box-shadow: 0 0 8px rgba(0 0 0 / 50%);
+  transform: scale(1.1);
+}
+
+.fav-heading {
+  position: relative;
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+}
+
+.fav-heading:before {
+  position: absolute;
+  content: "";
+  height: 1.1em;
+  border-left: 6px solid red;
+  margin: 0 0 0 -0.8rem;
 }
