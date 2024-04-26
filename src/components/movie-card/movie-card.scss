@@ -1,35 +1,53 @@
+#movie-card {
+  margin: 2rem 2rem;
+  width: 18rem;
+  padding: 0px;
+  background-size: 200%;
+  background: linear-gradient(150deg, rgb(124, 124, 124) 0%, #f6f6f6 90%);
+  border: solid 6px #0e1e2e;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.5),
+    0 1px 1px rgba(255, 255, 255, 0.7),
+    /* bright top edge */ 0 2px 0px rgba(255, 255, 255, 0.7),
+    /* bright right edge */ 2px 0px 0px rgba(255, 255, 255, 0.7),
+    0px -2px 0px rgba(255, 255, 255, 0.5), -2px 0px 0px rgba(255, 255, 255, 0.5),
+    /* inner shadow for depth */ inset 0 6px 2px rgba(0, 0, 0, 0.9); /* inner highlight for glossiness */
+}
+
 .custom-card {
   cursor: pointer;
-  border: none;
-}
-
-@media (max-width: 768px) {
-  .custom-card .d-flex {
-    flex-direction: column;
-    align-items: center;
-  }
-  .movie-text {
-    align-items: center;
-  }
-}
-
-.movie-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.card-description {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
 }
 
 .movie-card-link {
   color: black;
   text-decoration: none;
+}
+
+.poster-wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-bottom-right-radius: 8rem;
+  width: 100%;
+}
+//  filter: brightness(90%) blur(2px);
+
+.poster-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset -2px -2px 8px #000000;
+  border-bottom: 1px solid white;
+  border-bottom-right-radius: 8rem;
+  pointer-events: none;
+}
+
+#movie-poster {
+  display: block;
+  z-index: 1;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 100%;
 }

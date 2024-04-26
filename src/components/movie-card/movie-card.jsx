@@ -20,26 +20,30 @@ export const MovieCard = ({
   };
 
   return (
-    <Card className="custom-card" style={{ margin: "2rem 0px" }}>
-      <FavoriteButton isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
+    <Card id="movie-card">
+      <FavoriteButton
+        id="favorite-star-button"
+        isFavorite={isFavorite}
+        toggleFavorite={toggleFavorite}
+      />
       <Link
         to={`/movies/${encodeURIComponent(movieData.title)}`}
         className="movie-card-link"
       >
-        <div className="d-flex">
+        <div className="poster-wrapper">
           <Card.Img
-            variant="left"
+            id="movie-poster"
+            variant="top"
             src={movieData.imageUrl}
             alt={`Cover of ${movieData.title}`}
-            style={{ width: "220px", margin: "1rem" }}
           />
-          <Card.Body className="movie-text">
-            <Card.Title>{movieData.title}</Card.Title>
-            <Card.Text className="card-description">
-              {movieData.description}
-            </Card.Text>
-          </Card.Body>
         </div>
+        <Card.Body id="movie-text-container">
+          <Card.Title>{movieData.title}</Card.Title>
+          <Card.Text className="card-directors">
+            {movieData.directors}
+          </Card.Text>
+        </Card.Body>
       </Link>
     </Card>
   );

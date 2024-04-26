@@ -6,7 +6,7 @@ import "./index.scss";
 const MyFlixApplication = () => {
   return (
     <Container className="app-container" fluid>
-      <MainView />
+      <MainView className="primary-container" />
     </Container>
   );
 };

@@ -1,10 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.movie-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .movie-view-card {
-  margin: 2rem 0;
   padding-bottom: 2rem;
   position: relative;
-  display: flex;
-  align-items: center;
-  box-shadow: 4px 4px 4px rgba(0 0 0 / 50%);
+  margin: 2rem 2rem;
+  width: 60%;
+  background-size: 200%;
+  background: linear-gradient(150deg, rgb(192, 192, 192) 0%, #ffffff 90%);
+  border: solid 6px #0e1e2e;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.5),
+    0 2px 2px rgba(255, 255, 255, 0.7),
+    /* bright top edge */ 0 4px 0px rgba(255, 255, 255, 0.7),
+    /* bright right edge */ 2px 0px 0px rgba(255, 255, 255, 0.7),
+    0px -2px 0px rgba(255, 255, 255, 0.5), -2px 0px 0px rgba(255, 255, 255, 0.5),
+    /* inner shadow for depth */ inset 0 12px 4px rgba(0, 0, 0, 0.9); /* inner highlight for glossiness */
 }
 
 .movie-poster-container {
@@ -12,6 +27,8 @@
   display: flex;
   justify-content: center;
   background-color: black;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .card-body {
@@ -37,4 +54,19 @@
   position: absolute;
   left: 1rem;
   top: 1rem;
+}
+
+#similar-movies-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#similar-movies-list {
+  display: flex;
+}
+
+.similar-movies-title {
+  font-family: "Lobster", sans-serif;
 }

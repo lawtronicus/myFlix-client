@@ -7,7 +7,6 @@ import { SignupView } from "../SignupView/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Container } from "react-bootstrap";
 import "./main-view.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -95,7 +94,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <NavBar user={user} token={token} onLogout={logout} />
         <Routes>
           <Route
@@ -155,14 +154,12 @@ export const MainView = () => {
                   <Col> The list is empty!</Col>
                 ) : (
                   <>
-                    <Col md={8} className="mx-auto">
-                      <MovieView
-                        movies={movies}
-                        user={user}
-                        handleFavoriteToggle={handleFavoriteToggle}
-                        userFavoriteMovies={userFavoriteMovies}
-                      />
-                    </Col>
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      handleFavoriteToggle={handleFavoriteToggle}
+                      userFavoriteMovies={userFavoriteMovies}
+                    />
                   </>
                 )}
               </>
@@ -178,26 +175,23 @@ export const MainView = () => {
                   <Col>No movies!</Col>
                 ) : (
                   <>
-                    <Container className="main-view-container" fluid>
-                      <Row className="p-0">
-                        <h1 className="display-2 main-heading mt-2">
-                          Currently Featured Movies
-                        </h1>
-                        <Col sm={10} md={7} className="mx-auto">
-                          {movies.map((movie) => {
-                            return (
-                              <MovieCard
-                                key={movie.key}
-                                movieData={movie}
-                                userId={user._id}
-                                handleFavoriteToggle={handleFavoriteToggle}
-                                userFavoriteMovies={userFavoriteMovies}
-                              />
-                            );
-                          })}
-                        </Col>
-                      </Row>
-                    </Container>
+                    <h1
+                      className="main-heading mt-4"
+                      style={{ textAlign: "center" }}
+                    >
+                      Currently Featured Movies
+                    </h1>
+                    {movies.map((movie) => {
+                      return (
+                        <MovieCard
+                          key={movie.key}
+                          movieData={movie}
+                          userId={user._id}
+                          handleFavoriteToggle={handleFavoriteToggle}
+                          userFavoriteMovies={userFavoriteMovies}
+                        />
+                      );
+                    })}
                   </>
                 )}
               </>

@@ -4,7 +4,8 @@ import "./movie-view.scss";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/row";
 import { MovieCard } from "../movie-card/movie-card";
 import { FavoriteButton } from "../favorite-button/favorite-button";
 import { useScrollToTop } from "../../hooks/scroll-to-top.js";
@@ -32,7 +33,7 @@ export const MovieView = ({
 
   useScrollToTop();
   return (
-    <>
+    <Container className="movie-view-container" fluid>
       <Card className="movie-view-card">
         <FavoriteButton
           isFavorite={isFavorite}
@@ -40,7 +41,7 @@ export const MovieView = ({
         />
         <div className="movie-poster-container">
           <Card.Img
-            variant="top"
+            variant="left"
             src={movie.imageUrl}
             alt={`Cover of ${movie.title}`}
             style={{ width: "40%", height: "auto", margin: "1rem" }}
@@ -74,9 +75,9 @@ export const MovieView = ({
         </Link>
       </Card>
       {similarMovies.length > 0 && (
-        <>
+        <Container id="similar-movies-section">
           <h1 className="display-4 similar-movies-title">Similar Movies</h1>
-          <Col sm={10} md={12} className="mx-auto">
+          <Row>
             {similarMovies.map((movie) => (
               <MovieCard
                 key={movie.key}
@@ -86,10 +87,10 @@ export const MovieView = ({
                 userFavoriteMovies={userFavoriteMovies}
               />
             ))}
-          </Col>
-        </>
+          </Row>
+        </Container>
       )}
-    </>
+    </Container>
   );
 };
 
