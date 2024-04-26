@@ -76,7 +76,7 @@ export const LoginView = ({ onLoggedIn }) => {
           <Link to="/signup">
             <Button
               className="sign-up-button"
-              variant="secondary"
+              variant="dark"
               style={{ color: "white" }}
             >
               Sign up!
