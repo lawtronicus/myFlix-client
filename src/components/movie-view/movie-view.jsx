@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/row";
+import Row from "react-bootstrap/Row";
 import { MovieCard } from "../movie-card/movie-card";
 import { FavoriteButton } from "../favorite-button/favorite-button";
 import { useScrollToTop } from "../../hooks/scroll-to-top.js";
