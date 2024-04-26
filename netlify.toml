@@ -1,1 +1,4 @@
-  font-family: "Lobster", sans-serif;
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
