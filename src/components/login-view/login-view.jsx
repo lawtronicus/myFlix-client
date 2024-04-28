@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./login-view.scss";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -86,4 +87,8 @@ export const LoginView = ({ onLoggedIn }) => {
       </Col>
     </Row>
   );
+};
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
 };

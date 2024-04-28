@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import "./favorite-button.scss";
+import PropTypes from "prop-types";
 
 export const FavoriteButton = ({ isFavorite, toggleFavorite }) => {
   return (
@@ -35,4 +36,9 @@ export const FavoriteButton = ({ isFavorite, toggleFavorite }) => {
       )}
     </Button>
   );
+};
+
+FavoriteButton.propTypes = {
+  isFavorite: PropTypes.bool.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };

@@ -95,5 +95,15 @@ export const MovieView = ({
 };
 
 MovieView.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    favorite_movies: PropTypes.array,
+  }),
+  handleFavoriteToggle: PropTypes.func.isRequired,
+  userFavoriteMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

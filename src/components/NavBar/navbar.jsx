@@ -69,5 +69,8 @@ export const NavBar = ({ user, onLogout }) => {
 };
 
 NavBar.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string,
+  }), // Optional since user may be null
   onLogout: PropTypes.func.isRequired,
 };

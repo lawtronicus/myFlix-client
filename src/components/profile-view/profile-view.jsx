@@ -16,18 +16,6 @@ export const ProfileView = ({ user, token, userFavoriteMovies, onLogout }) => {
     username: user.username,
     dob: user.dob.split("T")[0],
   });
-  /*
-  const movieTitleAndImage = userFavoriteMovies.map((favoriteMovie) => {
-    console.log(favoriteMovie);
-    const movie = movies.find((movie) => movie.title === favoriteMovie);
-    console.log(movie);
-    if (movie) {
-      return { title: favoriteMovie, imageUrl: movie.imageUrl };
-    } else {
-      return null;
-    }
-  });
-  */
 
   const [show, setShow] = useState(false);
 
@@ -204,4 +192,21 @@ export const ProfileView = ({ user, token, userFavoriteMovies, onLogout }) => {
       </div>
     </Container>
   );
+};
+
+ProfileView.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    dob: PropTypes.string.isRequired,
+  }).isRequired,
+  token: PropTypes.string.isRequired,
+  userFavoriteMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageurl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
