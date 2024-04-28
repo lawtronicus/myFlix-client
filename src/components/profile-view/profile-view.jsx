@@ -7,6 +7,7 @@ import { Modal } from "react-bootstrap";
 import "./profile-view.scss";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const ProfileView = ({ user, token, userFavoriteMovies, onLogout }) => {
   const navigate = useNavigate();
