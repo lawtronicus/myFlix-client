@@ -3,6 +3,7 @@
 ## Introduction
 
 Welcome to the myFlix React app! This single-page application provides a platform for movie enthusiasts to browse and learn about various films. It integrates with a server-side REST API to fetch and display movies and related data. The app is built using the MERN stack (MongoDB, Express, React, and Node.js), offering a responsive and interactive user experience.
+Take a look at the app here: https://my-flix-application.netlify.app/.
 
 ## Features
 
