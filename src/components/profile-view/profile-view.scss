@@ -1,6 +1,7 @@
 .profile-page {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 #profile-container {
@@ -81,6 +82,7 @@
   position: relative;
   margin-top: 1rem;
   margin-left: 1.4rem;
+  color: black;
 }
 
 .fav-heading:before {
@@ -88,5 +90,5 @@
   content: "";
   height: 1.1em;
   border-left: 8px solid black;
-  margin: 0 0 0 -0.8rem;
+  margin: 0 0 0 -1rem;
 }

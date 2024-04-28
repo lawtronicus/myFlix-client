@@ -15,7 +15,7 @@ export const FavoriteButton = ({ isFavorite, toggleFavorite }) => {
         width: "2rem",
         marginRight: "1rem",
         marginTop: ".5rem",
-        "z-index": "1000",
+        zIndex: "1000",
       }}
     >
       {isFavorite ? (

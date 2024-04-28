@@ -5,6 +5,42 @@
   color: black;
   padding-left: 0px;
   padding-right: 0px;
-  margin-top: 2rem;
-  text-align: center;
+  text-align: left;
+}
+
+.movies-to-display {
+  display: flex;
+  padding: 0 4rem;
+}
+
+#heading-and-search {
+  padding: 2rem 8rem 0rem 8rem;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+#movieFilter {
+  height: 2rem;
+  width: 50%;
+}
+
+#main-content-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  #heading-and-search {
+    flex-direction: column;
+    padding: 0;
+    padding-left: 2rem;
+    margin-top: 1rem;
+    justify-content: start;
+    align-items: start;
+  }
+  #movieFilter {
+    width: 80%;
+  }
 }

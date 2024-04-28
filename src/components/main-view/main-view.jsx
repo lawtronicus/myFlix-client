@@ -7,8 +7,10 @@ import { SignupView } from "../SignupView/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import "./main-view.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { FormControl } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -20,6 +22,21 @@ export const MainView = () => {
     user ? user.favorite_movies : []
   );
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  useEffect(() => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMovies(filteredMovies);
+    console.log(filteredMovies);
+  }, [movies, searchTerm]);
+
   useEffect(() => {
     if (user) {
       setUserFavoriteMovies(user.favorite_movies || []);
@@ -30,8 +47,6 @@ export const MainView = () => {
     const isCurrentlyFavorite = userFavoriteMovies.some((favMovie) => {
       return favMovie.key === movie.key;
     });
-    console.log("movie: ", movie);
-    console.log("isCurrentlyFavorite: ", isCurrentlyFavorite);
 
     const updatedFavorites = isCurrentlyFavorite
       ? userFavoriteMovies.filter((favMovie) => favMovie.key !== movie.key)
@@ -174,25 +189,37 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <Col>No movies!</Col>
                 ) : (
-                  <>
-                    <h1
-                      className="main-heading mt-4"
-                      style={{ textAlign: "center" }}
-                    >
-                      Currently Featured Movies
-                    </h1>
-                    {movies.map((movie) => {
-                      return (
-                        <MovieCard
-                          key={movie.key}
-                          movieData={movie}
-                          userId={user._id}
-                          handleFavoriteToggle={handleFavoriteToggle}
-                          userFavoriteMovies={userFavoriteMovies}
-                        />
-                      );
-                    })}
-                  </>
+                  <Container
+                    id="main-content-container"
+                    class="d-flex flex-column"
+                    fluid
+                  >
+                    <div id="heading-and-search">
+                      <h1 className="main-heading">
+                        Currently Featured Movies
+                      </h1>
+                      <FormControl
+                        type="text"
+                        placeholder="Search movies..."
+                        value={searchTerm}
+                        onChange={handleSearchInputChange}
+                        id="movieFilter"
+                      />
+                    </div>
+                    <Row className="movies-to-display d-flex justify-content-center">
+                      {filteredMovies.map((movie) => {
+                        return (
+                          <MovieCard
+                            key={movie.key}
+                            movieData={movie}
+                            userId={user._id}
+                            handleFavoriteToggle={handleFavoriteToggle}
+                            userFavoriteMovies={userFavoriteMovies}
+                          />
+                        );
+                      })}
+                    </Row>
+                  </Container>
                 )}
               </>
             }
